@@ -56,6 +56,30 @@ public:
 
   ~grid() {}
 
+  int census(int row, int col) {
+    int counter = 0;
+
+    // Check status of cells one row above target
+    if (row != 0) {
+      if (this->m_grid[row - 1][col - 1]) {
+        ++counter;
+      }
+
+      if (this->m_grid[row - 1][col]) {
+        ++counter;
+      }
+
+      if (this->m_grid[row - 1][col + 1]) {
+        ++counter;
+      }
+    }
+
+    // Check status of cells to the right and left of target
+    // Check status of cells below the target
+
+    return counter;
+  }
+
   // Print entire grid.
   // For every cell printed, "O" means alive and "." means dead
   void print() {
