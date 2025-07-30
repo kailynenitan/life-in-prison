@@ -1,9 +1,7 @@
 #include "grid.h"
 
 int main() {
-  cell test(true, 0, 0);
-
-  test.print_state();
-
+  grid test(10, 10);
+  test.print();
   return 0;
 }
