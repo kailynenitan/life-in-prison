@@ -1,4 +1,5 @@
 #include "grid.h"
+#include <iostream>
 
 int main() {
   grid test(10, 10);
@@ -11,6 +12,13 @@ int main() {
   test.mark(2, 0, true);
   test.mark(2, 1, true);
   test.mark(2, 2, true);
+
+  auto num_alive = [&test](int row, int col) {
+    std::cout << "Number of cells alive at (" << row << ", " << col << "): ";
+    std::cout << test.census(row, col) << std::endl;
+  };
+
+  num_alive(1, 1);
 
   test.print();
   return 0;
