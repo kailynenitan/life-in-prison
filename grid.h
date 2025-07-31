@@ -56,26 +56,53 @@ public:
 
   ~grid() {}
 
+  // (int) Return the number of cells that are alive and neighboring the cell at
+  // coords (row, col) Returns -1 upon error
   int census(int row, int col) {
+    if (row < 0 || row > m_rows - 1 || col < 0 || col > m_cols - 1) {
+      return -1;
+    }
+
     int counter = 0;
 
-    // Check status of cells one row above target
-    if (row != 0) {
-      if (this->m_grid[row - 1][col - 1]) {
+    // Check the row that is one above the target cell's row
+    if (row > 0) {
+      if (this->m_grid[row - 1][col].state()) { // top-middle
         ++counter;
       }
 
-      if (this->m_grid[row - 1][col]) {
+      if (col > 0 && this->m_grid[row - 1][col - 1].state()) { // top-left
         ++counter;
       }
 
-      if (this->m_grid[row - 1][col + 1]) {
+      if (col < this->m_rows - 1 &&
+          this->m_grid[row - 1][col + 1].state()) { // top-right
         ++counter;
       }
     }
 
-    // Check status of cells to the right and left of target
-    // Check status of cells below the target
+    if (col > 0 && this->m_grid[row][col - 1].state()) {
+      ++counter;
+    }
+
+    if (col < this->m_cols - 1 && this->m_grid[row][col + 1].state()) {
+      ++counter;
+    }
+
+    if (row < this->m_rows - 1) {
+      if (this->m_grid[row + 1][col].state()) { // top-middle
+        ++counter;
+      }
+
+      if (col > 0 && this->m_grid[row + 1][col - 1].state()) { // top-left
+        ++counter;
+      }
+
+      if (col < this->m_rows - 1 &&
+          this->m_grid[row + 1][col + 1].state()) { // top-right
+        ++counter;
+      }
+    }
 
     return counter;
   }
