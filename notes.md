@@ -1,5 +1,11 @@
 NOTES
 
+7/30/2025
+Realistic goal: Finish writing the member functions census() and populate() in the grid class.
+Target goal: Begin to create tests for the game of life.
+Stretch goal: Finish the game of life.
+
+
 7/29/2025
 Realistic goal: Finish writing the grid class and the cell class.
 Target goal: Complete research on which library to use to animate the game of life. 
