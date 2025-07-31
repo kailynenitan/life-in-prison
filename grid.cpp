@@ -19,6 +19,11 @@ int main() {
   };
 
   num_alive(1, 1);
+  num_alive(1, 2);
+  num_alive(0, 0);
+  num_alive(9, 9);
+  num_alive(0, 9);
+  num_alive(9, 0);
 
   test.print();
   return 0;
