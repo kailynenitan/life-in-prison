@@ -5,6 +5,8 @@ Realistic goal: Finish writing the member functions census() and populate() in t
 Target goal: Begin to create tests for the game of life.
 Stretch goal: Finish the game of life.
 
+I finished the realistic goal. I'm surprised. It's far past my bed time at the moment but I'm proud, even if the census member function looks insane at the moment. That will be fixed next time.
+
 
 7/29/2025
 Realistic goal: Finish writing the grid class and the cell class.
