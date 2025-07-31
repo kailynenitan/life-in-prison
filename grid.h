@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -67,9 +68,23 @@ public:
       return;
     }
 
-    std::string coord;
-    while (std::getline(file_in, coord)) {
-      std::cout << coord << std::endl;
+    std::string line;
+    while (std::getline(file_in, line)) { // Iterate through every line and mark alive if it's a valid coord
+      std::stringstream coord(line);
+      int row;
+      int col;
+
+      if (!(coord >> row >> col)) {
+        std::cout << "ERROR: Error parsing line: " << line << std::endl;
+        return;
+      }
+
+      if (row < 0 || row >= m_rows || col < 0 || col >= m_cols) {
+        std::cout << "ERROR: Out of bounds coordinate: " << line << std::endl;
+        return;
+      }
+
+      this->m_grid[row][col].alive();
     }
 
     file_in.close();
