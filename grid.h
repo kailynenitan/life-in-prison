@@ -1,4 +1,6 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #ifndef GRID_H_INCLUDED
@@ -55,6 +57,25 @@ public:
   }
 
   ~grid() {}
+
+  // Marks cells as alive according to a .txt file that is read line by line
+  void populate(std::string filename) {
+    std::ifstream file_in(filename);
+
+    if (!file_in.is_open()) {
+      std::cout << "ERROR: Unable to open file.\n";
+      return;
+    }
+
+    std::string coord;
+    while (std::getline(file_in, coord)) {
+      std::cout << coord << std::endl;
+    }
+
+    file_in.close();
+
+    return;
+  }
 
   // (int) Return the number of cells that are alive and neighboring the cell at
   // coords (row, col) Returns -1 upon error
