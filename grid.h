@@ -69,7 +69,8 @@ public:
     }
 
     std::string line;
-    while (std::getline(file_in, line)) { // Iterate through every line and mark alive if it's a valid coord
+    while (std::getline(file_in, line)) { // Iterate through every line and mark
+                                          // alive if it's a valid coord
       std::stringstream coord(line);
       int row;
       int col;
@@ -99,48 +100,46 @@ public:
       return -1;
     }
 
-    int counter = 0;
+    auto cell_alive = [this](int r, int c) {
+      return this->m_grid[r][c].state();
+    };
 
-    // Check the row that is one above the target cell's row
+    // (int) Returns the number of alive cells among (r, c - 1), (r, c), and (r,
+    // c + 1) in this->m_grid
+    auto census_row = [this, cell_alive](int r, int c) {
+      int counter = 0;
+
+      if (c > 0 && cell_alive(r, c - 1)) { // left cell
+        ++counter;
+      }
+
+      if (cell_alive(r, c)) { // middle cell
+        ++counter;
+      }
+
+      if ((c < this->m_cols) && cell_alive(r, c + 1)) { // right cell
+        ++counter;
+      }
+
+      return counter;
+    };
+
+    int num_alive = 0;
+
     if (row > 0) {
-      if (this->m_grid[row - 1][col].state()) { // top-middle
-        ++counter;
-      }
-
-      if (col > 0 && this->m_grid[row - 1][col - 1].state()) { // top-left
-        ++counter;
-      }
-
-      if (col < this->m_rows - 1 &&
-          this->m_grid[row - 1][col + 1].state()) { // top-right
-        ++counter;
-      }
+      num_alive += census_row(row - 1, col);
     }
 
-    if (col > 0 && this->m_grid[row][col - 1].state()) {
-      ++counter;
+    num_alive += census_row(row, col);
+    if (cell_alive(row, col)) {
+      --num_alive;
     }
 
-    if (col < this->m_cols - 1 && this->m_grid[row][col + 1].state()) {
-      ++counter;
+    if (row < this->m_cols) {
+      num_alive += census_row(row + 1, col);
     }
 
-    if (row < this->m_rows - 1) {
-      if (this->m_grid[row + 1][col].state()) { // top-middle
-        ++counter;
-      }
-
-      if (col > 0 && this->m_grid[row + 1][col - 1].state()) { // top-left
-        ++counter;
-      }
-
-      if (col < this->m_rows - 1 &&
-          this->m_grid[row + 1][col + 1].state()) { // top-right
-        ++counter;
-      }
-    }
-
-    return counter;
+    return num_alive;
   }
 
   // Print entire grid.
