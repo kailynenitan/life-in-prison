@@ -135,7 +135,7 @@ public:
       --num_alive;
     }
 
-    if (row < this->m_cols) {
+    if (row < this->m_rows - 1) {
       num_alive += census_row(row + 1, col);
     }
 
