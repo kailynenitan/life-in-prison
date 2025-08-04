@@ -9,7 +9,8 @@
 
 class cell {
 public:
-  cell(bool alive, int row, int col) : m_alive{alive}, m_row{row}, m_col{col} {}
+  cell(bool alive, int row, int col)
+      : m_alive{alive}, m_new_state{false}, m_row{row}, m_col{col} {}
 
   ~cell() {}
 
@@ -21,19 +22,25 @@ public:
   }
 
   void alive() {
-    this->m_alive = true;
+    this->m_new_state = true;
     return;
   }
 
   void dead() {
-    this->m_alive = false;
+    this->m_new_state = false;
     return;
   }
 
   bool state() { return this->m_alive; }
 
+  void update_state() {
+    this->m_alive = m_new_state;
+    return;
+  }
+
 private:
   bool m_alive;
+  bool m_new_state;
   int m_row;
   int m_col;
 };
@@ -58,7 +65,17 @@ public:
   }
 
   ~grid() {}
-
+  
+  void update_grid() {
+    for (int r = 0; r < this->m_rows; ++r) {
+      for (int c = 0; c < this->m_cols; ++c) {
+        this->m_grid[r][c].update_state();
+      }
+    }
+    return;
+  }
+  
+  
   // Marks cells as alive according to a .txt file that is read line by line
   void populate(std::string filename) {
     std::ifstream file_in(filename);
@@ -87,6 +104,8 @@ public:
 
       this->m_grid[row][col].alive();
     }
+
+    update_grid();
 
     file_in.close();
 
@@ -154,7 +173,17 @@ public:
 
     return;
   }
-
+ 
+ /* 
+    void update_grid() {
+      for (int r = 0; r < this->m_rows; ++r) {
+        for (int c = 0; r < this->m_cols; ++c) {
+          this->m_grid[r][c].update_state();
+        }
+      }
+      return;
+    }
+    */
 private:
   int m_rows;
   int m_cols;
