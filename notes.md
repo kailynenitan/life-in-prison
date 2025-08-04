@@ -1,4 +1,9 @@
 NOTES
+8/3/2025
+Realsitic goal: Research ncurses library and plan how to animate the game of life.
+Target goal: Complete makefile and clang-format file.
+Stretch goal: Complete the game of life.
+
 
 7/30/2025
 Realistic goal: Finish writing the member functions census() and populate() in the grid class.
