@@ -34,6 +34,8 @@ void cell::update_state() {
   return;
 }
 
+// ALL FUNCTIONS BELOW ARE FOR THE GRID CLASS
+
 grid::grid(int rows, int cols) {
   m_rows = rows;
   m_cols = cols;
