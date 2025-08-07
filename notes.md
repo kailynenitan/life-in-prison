@@ -1,4 +1,13 @@
 NOTES
+8/6/2025
+Realistic goal: Complete makefile and clang-format file.
+Target goal: Research ncurses library and plan how to animate the game of life.
+Stretch goal: Complete the game of life.
+
+Last time, I didn't do much. Today is a new day for new mistakes to make :).
+I learned that I am supposed to put the class definitions for cell and grid in grid.cpp instead of grid.h so I started to work on that and then I got distracted (I started to play video games) and stopped but, I will continue with that today and complete the realistic goal that I have set for myself.
+
+
 8/3/2025
 Realsitic goal: Research ncurses library and plan how to animate the game of life.
 Target goal: Complete makefile and clang-format file.
