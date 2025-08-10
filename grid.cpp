@@ -7,8 +7,6 @@
 #include <string>
 #include <vector>
 
-
-
 grid::grid(int rows, int cols) {
     m_rows = rows;
     m_cols = cols;
@@ -123,8 +121,6 @@ int grid::census(int row, int col) {
     return num_alive;
 }
 
-// Print entire grid.
-// For every cell printed, "O" means alive and "." means dead
 void grid::print() {
     for (int r = 0; r < this->m_rows; ++r) {
         for (int c = 0; c < this->m_cols; ++c) {
@@ -133,5 +129,15 @@ void grid::print() {
         std::cout << "\n";
     }
 
+    return;
+}
+
+void mark_alive(int row, int col) {
+    this->m_grid[row][col].alive();
+    return;
+}
+
+void mark_dead(int row, int col) {
+    this->m_grid[row][col].dead();
     return;
 }

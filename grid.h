@@ -33,14 +33,22 @@ class grid {
 
     /**
      * census()
-     * Returns the number of cells neighboring a specific coordinate that have the state alive.
+     * Returns the number of cells neighboring a specific coordinate that have
+     * the state alive.
      *
      * @param row: The row coordinate of the cell
      * @param cell: The column coordinate of the cell
-     * @return: An integer representing the amount of neighboring cells that are alive
+     * @return: -1 when the coordinate entered is not valid
+     * @return: An integer representing the amount of neighboring cells that are
+     * alive
      */
     int census(int row, int col);
 
+    /**
+     * print()
+     * Print the state of every cell in the grid where a live cell is '0' and a
+     * dead cell is '.'
+     */
     void print();
 
     private:
@@ -48,9 +56,9 @@ class grid {
     int m_cols;
     std::vector<std::vector<cell>> m_grid;
 
-    void mark_alive();
-	    
-    void mark_dead();
+    void mark_alive(int row, int col);
+
+    void mark_dead(int row, int col);
 };
 
 #endif
