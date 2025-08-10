@@ -1,9 +1,12 @@
 #include "grid.h"
+#include "cell.h"
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
+
 
 
 grid::grid(int rows, int cols) {
@@ -95,7 +98,7 @@ int grid::census(int row, int col) {
             ++counter;
         }
 
-        if ((c < this->m_cols) && cell_alive(r, c + 1)) { // right cell
+        if ((c < this->m_cols - 1) && cell_alive(r, c + 1)) { // right cell
             ++counter;
         }
 

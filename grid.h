@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
+#include "cell.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
