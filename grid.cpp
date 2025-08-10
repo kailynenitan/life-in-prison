@@ -26,13 +26,20 @@ grid::grid(int rows, int cols) {
 
 grid::~grid() {}
 
-void grid::transition_states() {
+void grid::update() {
     for (int r = 0; r < this->m_rows; ++r) {
         for (int c = 0; c < this->m_cols; ++c) {
-            if (census(r, c) < 2 || census(r, c) > 3) {
-                testgrid.mark_dead(r, c);
+
+            if (this->m_grid[r][c].state()) {
+                if (this->census(r, c) < 2 || this->census(r, c) > 3) {
+                    this->m_grid[r][c].dead();
+                } else {
+                    this->m_grid[r][c].alive();
+                }
             } else {
-                testgrid.mark_alive(r, c);
+                if (this->census(r, c) == 3) {
+                    this->m_grid[r][c].alive();
+                }
             }
         }
     }
@@ -40,7 +47,7 @@ void grid::transition_states() {
     return;
 }
 
-void grid::update_grid() {
+void grid::refresh() {
     for (int r = 0; r < this->m_rows; ++r) {
         for (int c = 0; c < this->m_cols; ++c) {
             this->m_grid[r][c].update_state();
@@ -79,7 +86,8 @@ void grid::populate(std::string filename) {
         this->m_grid[row][col].alive();
     }
 
-    update_grid();
+    this->update();
+    this->refresh();
 
     file_in.close();
 
@@ -143,15 +151,5 @@ void grid::print() {
         std::cout << "\n";
     }
 
-    return;
-}
-
-void mark_alive(int row, int col) {
-    this->m_grid[row][col].alive();
-    return;
-}
-
-void mark_dead(int row, int col) {
-    this->m_grid[row][col].dead();
     return;
 }

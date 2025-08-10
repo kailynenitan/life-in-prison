@@ -14,11 +14,18 @@ class grid {
     ~grid();
 
     /**
-     * update_grid()
-     * Updates the state of all cells in the grid using the state transitions
-     * from John Conway's Game of Life.
+     * transition_state()
+     * Changes the temporary state of all cells based off of the state
+     * transition rules in John Conway's Game of Life
      */
-    void update_grid();
+    void update();
+
+    /**
+     * update_grid()
+     * Sets the state of all cells in the grid to the same value as their
+     * temporary states.
+     */
+    void refresh();
 
     /**
      * populate()
@@ -55,10 +62,6 @@ class grid {
     int m_rows;
     int m_cols;
     std::vector<std::vector<cell>> m_grid;
-
-    void mark_alive(int row, int col);
-
-    void mark_dead(int row, int col);
 };
 
 #endif
