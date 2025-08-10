@@ -2,17 +2,17 @@
 #include <iostream>
 
 int main() {
-  grid testgrid(10, 10);
+    grid testgrid(10, 10);
 
-  testgrid.populate("input.txt");
-  testgrid.print();
+    testgrid.populate("input.txt");
+    testgrid.print();
 
-  std::cout << "\n";
+    std::cout << "\n";
 
-  int row = 0;
-  int col = 0;
-  std::cout << "Number alive at (" << row << ", " << col
-            << "): " << testgrid.census(row, col) << std::endl;
+    int row = 1;
+    int col = 0;
+    std::cout << "Number alive at (" << row << ", " << col
+              << "): " << testgrid.census(row, col) << std::endl;
 
-  return 0;
+    return 0;
 }
