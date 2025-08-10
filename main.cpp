@@ -1,4 +1,5 @@
 #include "grid.h"
+
 #include <iostream>
 
 int main() {
@@ -7,12 +8,12 @@ int main() {
     testgrid.populate("input.txt");
     testgrid.print();
 
-    std::cout << "\n";
-
-    int row = 1;
-    int col = 0;
-    std::cout << "Number alive at (" << row << ", " << col
-              << "): " << testgrid.census(row, col) << std::endl;
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "\n\n";
+        testgrid.update();
+        testgrid.refresh();
+        testgrid.print();
+    }
 
     return 0;
 }
