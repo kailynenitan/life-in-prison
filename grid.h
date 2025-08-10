@@ -6,46 +6,46 @@
 #include <vector>
 
 class cell {
-public:
-  cell(bool alive, int row, int col);
+    public:
+    cell(bool alive, int row, int col);
 
-  ~cell();
+    ~cell();
 
-  void print_state();
+    void print_state();
 
-  void alive();
+    void alive();
 
-  void dead();
+    void dead();
 
-  bool state();
+    bool state();
 
-  void update_state();
+    void update_state();
 
-private:
-  bool m_alive;
-  bool m_new_state;
-  int m_row;
-  int m_col;
+    private:
+    bool m_alive;
+    bool m_new_state;
+    int m_row;
+    int m_col;
 };
 
 class grid {
-public:
-  grid(int rows, int cols);
+    public:
+    grid(int rows, int cols);
 
-  ~grid();
+    ~grid();
 
-  void update_grid();
+    void update_grid();
 
-  void populate(std::string filename);
+    void populate(std::string filename);
 
-  int census(int row, int col);
+    int census(int row, int col);
 
-  void print();
+    void print();
 
-private:
-  int m_rows;
-  int m_cols;
-  std::vector<std::vector<cell>> m_grid;
+    private:
+    int m_rows;
+    int m_cols;
+    std::vector<std::vector<cell>> m_grid;
 };
 
 #endif
