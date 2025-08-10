@@ -10,7 +10,7 @@ main.o: main.cpp grid.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp grid.cpp
 
 format:
-	clang-format -i -style=LLVM *.cpp *.h
+	clang-format -i -style=file *.cpp *.h
 
 clean:
 	rm -f *.o main
