@@ -30,6 +30,6 @@ void cell::dead() {
 bool cell::state() { return this->m_alive; }
 
 void cell::update_state() {
-    this->m_alive = m_new_state;
+    this->m_alive = this->m_new_state;
     return;
 }

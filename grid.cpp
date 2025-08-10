@@ -26,6 +26,20 @@ grid::grid(int rows, int cols) {
 
 grid::~grid() {}
 
+void grid::transition_states() {
+    for (int r = 0; r < this->m_rows; ++r) {
+        for (int c = 0; c < this->m_cols; ++c) {
+            if (census(r, c) < 2 || census(r, c) > 3) {
+                testgrid.mark_dead(r, c);
+            } else {
+                testgrid.mark_alive(r, c);
+            }
+        }
+    }
+
+    return;
+}
+
 void grid::update_grid() {
     for (int r = 0; r < this->m_rows; ++r) {
         for (int c = 0; c < this->m_cols; ++c) {
