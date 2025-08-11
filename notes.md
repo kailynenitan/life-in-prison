@@ -1,10 +1,17 @@
 NOTES
+8/10/2025
+Realistic goal: Complete the game of life.
+Target goal: Start creating a plan to implement the prisoner's dilemma into the game of life.
+Stretch goal: Start creating psuedocode for the prisoner's dilemma.
+
+
 8/9/2025
 Realistic goal: Research ncurses library and plan how to animate the game of life.
 Target goal: Complete the game of life.
 Stretch goal: Start creating a plan to implement the prisoner's dilemma into the game of life.
 
-Last time, I completed the makefile and clang-format file. I am using a clang-format file from one of my college courses (CSE13 with Prof. Long from UCSC). 
+Last time, I completed the makefile and clang-format file. I am using a clang-format file from one of my college courses (CSE13 with Prof. Long from UCSC).
+
 
 8/6/2025
 Realistic goal: Complete makefile and clang-format file.
