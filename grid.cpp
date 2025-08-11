@@ -1,4 +1,5 @@
 #include "grid.h"
+
 #include "cell.h"
 
 #include <fstream>
@@ -24,22 +25,29 @@ grid::grid(int rows, int cols) {
     return;
 }
 
-grid::~grid() {}
+grid::~grid() {
+}
 
 void grid::update() {
     for (int r = 0; r < this->m_rows; ++r) {
         for (int c = 0; c < this->m_cols; ++c) {
 
-            if (this->m_grid[r][c].state()) {
-                if (this->census(r, c) < 2 || this->census(r, c) > 3) {
-                    this->m_grid[r][c].dead();
-                } else {
-                    this->m_grid[r][c].alive();
-                }
-            } else {
-                if (this->census(r, c) == 3) {
-                    this->m_grid[r][c].alive();
-                }
+            int cell_census = this->census(r, c);
+            bool cell_alive = this->m_grid[r][c].state();
+
+            // Rule 1 and 3: underpopulation and overpopulation transition states
+            if (cell_alive && (cell_census < 2 || cell_census > 3)) {
+                this->m_grid[r][c].dead();
+            }
+
+            // Rule 2: survival to the next generation
+            if (cell_alive && (cell_census == 2 || cell_census == 3)) {
+                this->m_grid[r][c].alive();
+            }
+
+            // Rule 4: reproduction
+            if (!cell_alive && cell_census == 3) {
+                this->m_grid[r][c].alive();
             }
         }
     }
@@ -67,7 +75,7 @@ void grid::populate(std::string filename) {
 
     std::string line;
     while (std::getline(file_in, line)) { // Iterate through every line and mark
-                                          // alive if it's a valid coord
+        // alive if it's a valid coord
         std::stringstream coord(line);
         int row;
         int col;
@@ -78,8 +86,7 @@ void grid::populate(std::string filename) {
         }
 
         if (row < 0 || row >= m_rows || col < 0 || col >= m_cols) {
-            std::cout << "ERROR: Out of bounds coordinate: " << line
-                      << std::endl;
+            std::cout << "ERROR: Out of bounds coordinate: " << line << std::endl;
             return;
         }
 
@@ -101,9 +108,7 @@ int grid::census(int row, int col) {
         return -1;
     }
 
-    auto cell_alive = [this](int r, int c) {
-        return this->m_grid[r][c].state();
-    };
+    auto cell_alive = [this](int r, int c) { return this->m_grid[r][c].state(); };
 
     // (int) Returns the number of alive cells among (r, c - 1), (r, c), and (r,
     // c + 1) in this->m_grid
