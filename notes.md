@@ -1,8 +1,8 @@
 NOTES
 8/10/2025
-Realistic goal: Complete the game of life.
-Target goal: Start creating a plan to implement the prisoner's dilemma into the game of life.
-Stretch goal: Start creating psuedocode for the prisoner's dilemma.
+Realistic goal: Finish researching the FTXUI library and start creating a plan on how to use it in the program.
+Target goal: Finish writing pseudocode for the code from the FTXUI library.
+Stretch goal: Complete the game of life.
 
 I'm finally doing some of the research for how to animate the game of life in the terminal. I used ncurses in my college courses because I was programming in C at the time but, I guess I'm supposed to be using the FXTUI library for C++ programs.
 
